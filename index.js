@@ -1,4 +1,6 @@
 document.querySelector('#ewallet-form').addEventListener('submit', function(e){
+    // time
+    const time = getFormatedTime()
 
     // stop from reload 
     e.preventDefault()
@@ -15,7 +17,7 @@ document.querySelector('#ewallet-form').addEventListener('submit', function(e){
                             <p>${desc}</p>
                         </div>
                         <div class="item-time">
-                            <p>25 Feb, 06:45 PM</p>
+                            <p>${time}</p>
                         </div>
                         </div>
                         <div class="item-amount ${type === '+' ? 'income-amount' : 'expense-amount'}">
@@ -50,3 +52,20 @@ function resetForm(){
     const desc = document.querySelector('.add__description').value = ''
     const value = document.querySelector('.add__value').value = ''
 }
+
+// formated time function
+function getFormatedTime(){
+    const now = new Date().toLocaleTimeString('en-us', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    })
+    
+    const date = now.split(',')[0].split(' ')
+    const time = now.split(',')[1]
+    
+    const formatedTime = `${date[1]} ${date[0]},${time}`
+    return formatedTime
+}
+
