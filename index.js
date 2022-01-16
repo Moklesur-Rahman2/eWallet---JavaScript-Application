@@ -18,7 +18,7 @@ document.querySelector('#ewallet-form').addEventListener('submit', function(e){
                             <p>25 Feb, 06:45 PM</p>
                         </div>
                         </div>
-                        <div class="item-amount expense-amount">
+                        <div class="item-amount ${type === '+' ? 'income-amount' : 'expense-amount'}">
                         <p>${type}$${value}</p>
                         </div>
                     </div>`
@@ -29,6 +29,8 @@ document.querySelector('#ewallet-form').addEventListener('submit', function(e){
     // inset newItem to collection div
     collection.insertAdjacentHTML('afterbegin', newItem)
 
+    // reset form 
+    resetForm()
 
 
 
@@ -41,3 +43,10 @@ document.querySelector('#ewallet-form').addEventListener('submit', function(e){
 
 
 })
+
+// reset form function 
+function resetForm(){
+    const type = document.querySelector('.add__type').value = '+'
+    const desc = document.querySelector('.add__description').value = ''
+    const value = document.querySelector('.add__value').value = ''
+}
