@@ -35,7 +35,8 @@ document.querySelector('#ewallet-form').addEventListener('submit', function(e){
     resetForm()
 
 
-
+// add items to local storage
+addItemsToLS(desc, time, type, value)
 
 
 
@@ -69,3 +70,23 @@ function getFormatedTime(){
     return formatedTime
 }
 
+// addItemsToLS function
+
+function addItemsToLS(desc, time, type, value){
+    let items = localStorage.getItem('items')
+
+    if(items){
+        items = JSON.parse(items)
+    }else{
+        items = []
+    }
+
+    items.push({
+        desc: desc,
+        time: time,
+        type: type,
+        value: value
+    })
+
+    localStorage.setItem('items', JSON.stringify(items))
+}
